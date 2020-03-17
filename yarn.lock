@@ -8349,6 +8349,11 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-query@^1.0.27:
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-1.0.27.tgz#f60799f4713dec2f0ad0ca50a5b43cc31ea0da2e"
+  integrity sha512-Ry1CCIVeLUuuOfrCX6irn56RuGBCi7sy44tGGQ5kxuNkfsPpI7E0t3JrBMA8gXXez+Yl5f+gagsNxTN7ey6hiw==
+
 react-scripts@3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.4.0.tgz#f413680f0b5b937c8879ba1ffdae9b8c5b364bf5"

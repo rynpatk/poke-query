@@ -1,24 +1,61 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useQuery } from 'react-query';
+
 import './App.css';
 
-function App() {
+const API_URL = 'https://pokeapi-graphiql.herokuapp.com';
+
+const POKEMON_QUERY = (pokeId) => `
+  query {
+    pokemon(number: ${pokeId}) {
+      name
+    }
+  }
+`;
+
+const Pokemon = ({ pokeId }) => {
+  const opts = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: POKEMON_QUERY(pokeId) })
+  };
+
+  const fetchPokemon = async () => {
+    return await (await fetch(API_URL, opts)).json();
+  }
+
+  const { status, data, error } = useQuery('pokemon', fetchPokemon);
+
+  const renderContents = () => {
+    if (status === 'loading') return <p>loading...</p>;
+    if (error) return <p>woops!</p>;
+    
+    const { data: { pokemon } } = data;
+
+    return (
+      <>
+        <p>{pokemon.name}</p>
+      </>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {renderContents()}
+    </div>
+  )
+}
+
+const App = () => {
+  const pokemonIdsToFetch = [148];
+
+  return (
+    <div>
+      {pokemonIdsToFetch.map((id) => {
+        return (
+          <Pokemon key={id} pokeId={id} />
+        );
+      })}
     </div>
   );
 }
